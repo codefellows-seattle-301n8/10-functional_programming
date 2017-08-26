@@ -7,6 +7,8 @@ var app = app || {};
 // Where the IIFE is invoked, pass in the global 'app' object that is defined above.
 // Keep in mind that all references to 'Article' in this file now need to be renamed to 'app.Article'. There are not separate instructions for those; you'll need to debug and find them on your own.
 var articleView = {};
+function IIFE(module) {
+
 
 articleView.populateFilters = function() {
   $('article').each(function() {
@@ -146,4 +148,8 @@ articleView.initAdminPage = function() {
   // REVIEW: Simply write the correct values to the page:
   $('#blog-stats .articles').text(app.Article.all.length);
   $('#blog-stats .words').text(app.Article.numWordsAll());
+  }
+
+  articleView.module
 };
+IIFE(app);
