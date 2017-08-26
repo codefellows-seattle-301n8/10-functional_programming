@@ -49,7 +49,7 @@ var app = app || {};
   Article.all.push(new Article(ele));
   });
   */
-  Article.all = rawData.map(function(article) {
+  Article.all = $.map(rawData, function(article) {
     return new Article(article);
   });
 
@@ -67,9 +67,10 @@ var app = app || {};
 
   // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
   Article.numWordsAll = () => {
-    return Article.all.map(function(article){
+    debugger;
+    return $.map(Article.all, function(article){
       var numWords = article['body'].split(" ");
-      debugger;  //create a new array
+      //create a new array
       return numWords.length;
     }).reduce(function(sum, value){
       return sum + value;
@@ -79,7 +80,11 @@ var app = app || {};
   // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names. You will
   // probably need to use the optional accumulator argument in your reduce call.
   Article.allAuthors = () => {
-  return Article.all.map().reduce();
+    return $.map(Article.all, function(article) {
+      return article.author;
+    }).filter(function(elem, pos, arr) {
+      return arr.indexOf(elem) == pos;
+    });
   };
 
   Article.numWordsByAuthor = () => {
