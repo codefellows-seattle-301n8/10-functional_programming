@@ -135,7 +135,7 @@ Article.prototype.updateRecord = function(callback) {
   })
   .then(console.log)
   .then(callback);
-  }
-  Article.module;
   };
-});
+
+  module.Article = Article;
+})(app);
