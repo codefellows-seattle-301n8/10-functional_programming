@@ -68,11 +68,8 @@ var app = app || {};
 
   // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
   Article.numWordsAll = () => {
-    debugger;
-    return $.map(Article.all, function(article){
-      var numWords = article['body'].split(" ");
-      //create a new array
-      return numWords.length;
+    return Article.all.map(function(article){
+      return article.body.split(' ').length;
     }).reduce(function(sum, value){
       return sum + value;
     })
@@ -81,11 +78,14 @@ var app = app || {};
   // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names. You will
   // probably need to use the optional accumulator argument in your reduce call.
   Article.allAuthors = () => {
-    return $.map(Article.all, function(article) {
+    return Article.all.map(function(article) {
       return article.author;
-    }).filter(function(elem, pos, arr) {
-      return arr.indexOf(elem) == pos;
-    });
+    }).reduce(function(acc, value) {
+      if (acc.indexOf(value) === -1) {
+        acc.push(value);
+      };
+      return acc;
+    },[]);
   };
 
   Article.numWordsByAuthor = () => {
@@ -97,9 +97,20 @@ var app = app || {};
   // The first property should be pretty straightforward, but you will need to chain
   // some combination of filter, map, and reduce to get the value for the second
   // property.
+      return {
+        name: author,
+        totalWordsByAuthor: Article.all.filter(article => {
+          return article.author === author;
+        }).map(article => {
+          return article.body.split(' ').length;
 
-  })
-  };
+        }).reduce(function(sum, value) {
+          return sum + value;
+        })
+      };
+    })
+  }
+
 
   Article.truncateTable = callback => {
   $.ajax({
