@@ -5,24 +5,6 @@ var app = app || {};
 
 // TODO: Wrap the contents of this file, except for the preceding 'use strict' and 'var app...' declararions, in an IIFE.
 (function(module){
-  $.get('./data/hackerIpsum.json').then((data) => {
-    let hackers = data.map(article => article.author).reduce((a,b) => {
-      if (a.indexOf(b) === -1) a.push(b);
-      return a;
-    }, []);
-
-    let wordsByHacker = hackers.map(hacker => {
-      let hackerWords = data.map(hacker, articles => {
-        if (articles.author = hacker) {
-          return articles.body.split(" ").length;
-        } else {
-          return 0;
-        }
-      }).reduce((a,b) => a + b);
-
-      return {author: hacker, words: hackerWords};
-    });
-    console.log(wordsByHacker);
 
   });
   function Article(rawDataObj) {
