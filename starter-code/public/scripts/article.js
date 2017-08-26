@@ -49,6 +49,9 @@ var app = app || {};
   Article.all.push(new Article(ele));
   });
   */
+  Article.all = rawData.map(function(article) {
+    return new Article(article);
+  });
 
   };
 
@@ -130,6 +133,6 @@ var app = app || {};
   .then(console.log)
   .then(callback);
   };
-  
+
   module.Article = Article;
 })(app);
