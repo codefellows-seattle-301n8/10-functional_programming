@@ -150,6 +150,6 @@ articleView.initAdminPage = function() {
   $('#blog-stats .words').text(app.Article.numWordsAll());
   }
 
-  articleView.module
+  articleView.module;
 };
 IIFE(app);

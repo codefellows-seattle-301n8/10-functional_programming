@@ -49,7 +49,7 @@ Article.loadAll = rows => {
 });
 */
 Article.all = rawData.map(function(ele){
-  
+
 })
 // var newArray = ele
 
@@ -131,5 +131,5 @@ Article.prototype.updateRecord = function(callback) {
   .then(console.log)
   .then(callback);
   }
-  article.module;
+  Article.module;
 };
