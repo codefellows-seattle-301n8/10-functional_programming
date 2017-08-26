@@ -42,11 +42,13 @@ Article.loadAll = rows => {
   // of functions. So if we set a variable equal to the result of a .map, it will be our transformed array.
   // There is no need to push to anything.
 
-  /* OLD forEach():
-  rawData.forEach(function(ele) {
-  Article.all.push(new Article(ele));
-});
-*/
+// forEach():
+//   rawData.forEach(function(ele) {
+//   Article.all.push(new Article(ele));
+// });
+
+Article.all = rows.map(element => new Article(element));
+
 
 };
 
