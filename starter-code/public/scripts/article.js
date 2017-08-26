@@ -41,13 +41,12 @@ Article.loadAll = rows => {
   // is the transformation of one collection into another. Remember that we can set variables equal to the result
   // of functions. So if we set a variable equal to the result of a .map, it will be our transformed array.
   // There is no need to push to anything.
-
+  Article.all = rawData.map(ele => new Article(ele));
   /* OLD forEach():
   rawData.forEach(function(ele) {
   Article.all.push(new Article(ele));
 });
 */
-
 };
 
 Article.fetchAll = callback => {
