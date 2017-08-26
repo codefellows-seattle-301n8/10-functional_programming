@@ -7,7 +7,7 @@ var app = app || {};
 // Give the IIFE a parameter called 'module'.
 // At the very end of the code, but still inside the IIFE, attach the 'Article' object to 'module'.
 // Where the IIFE is invoked, pass in the global 'app' object that is defined above.
-(function articleLul(module) {
+(function(module) {
 function Article(rawDataObj) {
   /* REVIEW: In lab 8, we explored a lot of new functionality going on here. Let's re-examine
   the concept of context.
@@ -132,5 +132,7 @@ Article.prototype.updateRecord = function(callback) {
   })
   .then(console.log)
   .then(callback);
-  };
 };
+
+module.Article = Article;
+})(app);
