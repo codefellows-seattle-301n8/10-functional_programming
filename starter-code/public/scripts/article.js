@@ -7,7 +7,7 @@ var app = app || {};
 // Give the IIFE a parameter called 'module'.
 // At the very end of the code, but still inside the IIFE, attach the 'Article' object to 'module'.
 // Where the IIFE is invoked, pass in the global 'app' object that is defined above.
-function IIFE(module){
+(function (module){
   function Article(rawDataObj) {
   /* REVIEW: In lab 8, we explored a lot of new functionality going on here. Let's re-examine
   the concept of context.
@@ -83,7 +83,12 @@ Article.numWordsByAuthor = () => {
     // The first property should be pretty straightforward, but you will need to chain
     // some combination of filter, map, and reduce to get the value for the second
     // property.
-
+    return {
+      name: author;
+      numWords: .filter(function(acc.author === author)
+      .map(acc => acc.body.match(/\b\w+/g).))
+      .reduce((a, b) => a + b);
+    }
   })
 };
 
@@ -132,4 +137,5 @@ Article.prototype.updateRecord = function(callback) {
   .then(callback);
   }
   Article.module;
-};
+  };
+});
