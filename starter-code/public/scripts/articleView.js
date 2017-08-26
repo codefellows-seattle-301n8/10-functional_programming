@@ -6,6 +6,7 @@ var app = app || {};
 // At the very end of the code, but still inside the IIFE, attach the 'articleView' object to 'module'.
 // Where the IIFE is invoked, pass in the global 'app' object that is defined above.
 // Keep in mind that all references to 'Article' in this file now need to be renamed to 'app.Article'. There are not separate instructions for those; you'll need to debug and find them on your own.
+(function articleLol(module){
 var articleView = {};
 
 articleView.populateFilters = function() {
@@ -149,4 +150,5 @@ articleView.initAdminPage = function() {
   // REVIEW: Simply write the correct values to the page:
   $('#blog-stats .articles').text(app.Article.all.length);
   $('#blog-stats .words').text(app.Article.numWordsAll());
+};
 };
