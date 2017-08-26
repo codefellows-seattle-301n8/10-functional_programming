@@ -69,13 +69,20 @@ Article.numWordsAll = () => {
 // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names. You will
 // probably need to use the optional accumulator argument in your reduce call.
 Article.allAuthors = () => {
-  return Article.all.map(article => article.author)
-                    .reduce((acc, author) => if(!acc.includes(author)) acc.push(author), []);
+  return Article.all
+        .map(article => article.author)
+        .reduce((acc, author) => if(!acc.includes(author)) acc.push(author), []);
 };
 
 Article.numWordsByAuthor = () => {
   return Article.allAuthors().map(authorEle => {
-      new Object({name: authorEle.author, words: () => })
+      new Object({
+        name: author,
+        numWord: Article.allAuthors
+                .map(ele => ele.body.split(' '))
+                .reduce((acc,num) => acc + num.length);
+      };
+
     // TODO: Transform each author string into an object with properties for
     // the author's name, as well as the total number of words across all articles
     // written by the specified author.
@@ -83,6 +90,8 @@ Article.numWordsByAuthor = () => {
     // The first property should be pretty straightforward, but you will need to chain
     // some combination of filter, map, and reduce to get the value for the second
     // property.
+
+
 
   })
 };
