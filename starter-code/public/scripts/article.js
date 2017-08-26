@@ -43,11 +43,12 @@ Article.loadAll = rows => {
   // There is no need to push to anything.
   Article.all = rawData.map(ele => new Article(ele));
   /* OLD forEach():
-  rawData.forEach(function(ele) {
-  Article.all.push(new Article(ele));
+  // rawData.forEach(function(ele) {
+  // Article.all.push(new Article(ele));
 });
 */
 };
+
 
 Article.fetchAll = callback => {
   $.get('/articles')
@@ -61,17 +62,20 @@ Article.fetchAll = callback => {
 
 // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
 Article.numWordsAll = () => {
-  return Article.all.map().reduce()
+  return Article.all.map(ele => ele.body.split(' '))
+                    .reduce((acc,num) => acc + num.length);
 };
 
 // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names. You will
 // probably need to use the optional accumulator argument in your reduce call.
 Article.allAuthors = () => {
-  return Article.all.map().reduce();
+  return Article.all.map(article => article.author)
+                    .reduce((acc, author) => if(!acc.includes(author)) acc.push(author), []);
 };
 
 Article.numWordsByAuthor = () => {
-  return Article.allAuthors().map(author => {
+  return Article.allAuthors().map(authorEle => {
+      new Object({name: authorEle.author, words: () => })
     // TODO: Transform each author string into an object with properties for
     // the author's name, as well as the total number of words across all articles
     // written by the specified author.
