@@ -85,8 +85,8 @@ Article.numWordsByAuthor = () => {
     // property.
     return {
       name: author;
-      numWords: .filter(function(acc.author === author)
-      .map(acc => acc.body.match(/\b\w+/g).))
+      numWords: Article.all.filter(function(article.author === author)
+      .map(article => article.body.match(/\b\w+/g).))
       .reduce((a, b) => a + b);
     }
   })
