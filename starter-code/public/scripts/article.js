@@ -48,10 +48,10 @@ Article.loadAll = rows => {
   Article.all.push(new Article(ele));
 });
 */
-Article.all = rawData.map(function(ele){
-
+Article.all = rows.map(function(ele){
+  return new Article(ele));
 })
-// var newArray = ele
+ // var newArray = ele
 
 Article.fetchAll = callback => {
   $.get('/articles')
