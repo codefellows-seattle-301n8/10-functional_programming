@@ -49,7 +49,8 @@ var app = app || {};
   Article.all.push(new Article(ele));
   });
   */
-  Article.all = $.map(rawData, function(article) {
+  Article.all = $.map(rows, function(article) {
+    console.log(article);
     return new Article(article);
   });
 
