@@ -7,7 +7,8 @@ var app = app || {};
 // Give the IIFE a parameter called 'module'.
 // At the very end of the code, but still inside the IIFE, attach the 'Article' object to 'module'.
 // Where the IIFE is invoked, pass in the global 'app' object that is defined above.
-function Article(rawDataObj) {
+function IIFE(module){
+  function Article(rawDataObj) {
   /* REVIEW: In lab 8, we explored a lot of new functionality going on here. Let's re-examine
   the concept of context.
   Normally, "this" inside of a constructor function refers to the newly instantiated object.
@@ -47,8 +48,10 @@ Article.loadAll = rows => {
   Article.all.push(new Article(ele));
 });
 */
+Article.all = rawData.map(function(ele){
 
-};
+})
+// var newArray = ele
 
 Article.fetchAll = callback => {
   $.get('/articles')
@@ -127,4 +130,6 @@ Article.prototype.updateRecord = function(callback) {
   })
   .then(console.log)
   .then(callback);
+  }
+  Article.module;
 };
