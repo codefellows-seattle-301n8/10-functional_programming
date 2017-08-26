@@ -74,7 +74,7 @@ Article.numWordsAll = () => {
 Article.allAuthors = () => {
   Article.all.map(function(article){
     return article.author.length;
-  };
+  });
 };
 
 Article.numWordsByAuthor = () => {
@@ -132,5 +132,5 @@ Article.prototype.updateRecord = function(callback) {
   })
   .then(console.log)
   .then(callback);
-};
+  };
 };
