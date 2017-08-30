@@ -5,8 +5,6 @@ var app = app || {};
 
 // TODO: Wrap the contents of this file, except for the preceding 'use strict' and 'var app...' declararions, in an IIFE.
 (function(module){
-
-  });
   function Article(rawDataObj) {
     /* REVIEW: In lab 8, we explored a lot of new functionality going on here. Let's re-examine
     the concept of context.
@@ -35,7 +33,6 @@ var app = app || {};
   };
 
   Article.loadAll = rows => {
-    console.log(rows);
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
 
     // TODO: Refactor this forEach code, by using a `.map` call instead, since what we are trying to accomplish
