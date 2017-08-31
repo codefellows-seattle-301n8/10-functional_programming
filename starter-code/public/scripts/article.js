@@ -48,8 +48,8 @@ Article.loadAll = rows => {
   Article.all.push(new Article(ele));
 });
 */
-Article.all = rows.map(ele => new Article(ele))
-
+  Article.all = rows.map(ele => new Article(ele))
+};
 
 Article.fetchAll = callback => {
   $.get('/articles')
@@ -132,7 +132,5 @@ Article.prototype.updateRecord = function(callback) {
   })
   .then(console.log)
   .then(callback);
-  }
   module.Article = Article
-  };
 })(app);
