@@ -48,7 +48,7 @@ Article.loadAll = rows => {
   Article.all.push(new Article(ele));
 });
 */
-Article.all = rows.map((ele) => {return new Article(ele)})
+Article.all = rows.map(ele => new Article(ele))
 
 
 Article.fetchAll = callback => {
@@ -75,7 +75,6 @@ Article.allAuthors = () => {
 };
 
 Article.numWordsByAuthor = () => {
-  return Article.allAuthors().map(author => {
     // TODO: Transform each author string into an object with properties for
     // the author's name, as well as the total number of words across all articles
     // written by the specified author.
@@ -83,13 +82,11 @@ Article.numWordsByAuthor = () => {
     // The first property should be pretty straightforward, but you will need to chain
     // some combination of filter, map, and reduce to get the value for the second
     // property.
-    return {
-      name: author;
-      numWords: Article.all.filter(function(article.author === author)
-      .map(article => article.body.match(/\b\w+/g).))
-      .reduce((a, b) => a + b);
-    }
-  })
+    return Article.all.map(article => article.author)
+      .reduce((names, name) => {
+        if (names.indexOf(name) === -1) names.push(name);
+        return names;
+      }, []);
 };
 
 Article.truncateTable = callback => {
@@ -136,6 +133,6 @@ Article.prototype.updateRecord = function(callback) {
   .then(console.log)
   .then(callback);
   }
-  Article.module;
+  module.Article = Article
   };
-});
+})(app);
