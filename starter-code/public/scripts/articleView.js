@@ -152,4 +152,4 @@ articleView.initAdminPage = function() {
   }
 
   module.articleView = articleView;
-}(app);
+})(app);
