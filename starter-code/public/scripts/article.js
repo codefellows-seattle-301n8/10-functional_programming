@@ -7,7 +7,8 @@ var app = app || {};
 // Give the IIFE a parameter called 'module'.
 // At the very end of the code, but still inside the IIFE, attach the 'Article' object to 'module'.
 // Where the IIFE is invoked, pass in the global 'app' object that is defined above.
-function Article(rawDataObj) {
+(function(module) {
+  function Article(rawDataObj) {
   /* REVIEW: In lab 8, we explored a lot of new functionality going on here. Let's re-examine
   the concept of context.
   Normally, "this" inside of a constructor function refers to the newly instantiated object.
@@ -47,8 +48,8 @@ Article.loadAll = rows => {
   Article.all.push(new Article(ele));
 });
 */
+Article.all = rows.map(ele => new Article(ele));
 
-};
 
 Article.fetchAll = callback => {
   $.get('/articles')
@@ -62,17 +63,23 @@ Article.fetchAll = callback => {
 
 // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
 Article.numWordsAll = () => {
-  return Article.all.map().reduce()
+  return Article.all.map((article) => article.body.split(' '))
+  .reduce((acc, num) => acc + num).length;
 };
 
 // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names. You will
 // probably need to use the optional accumulator argument in your reduce call.
 Article.allAuthors = () => {
-  return Article.all.map().reduce();
+  return Article.all.map(function(author){
+     return author.author;
+   })
+   .reduce(function(acc, num){
+     if(acc.indexOf(num) < 0) acc.push(num);
+     return acc;
+   }, []);
 };
 
 Article.numWordsByAuthor = () => {
-  return Article.allAuthors().map(author => {
     // TODO: Transform each author string into an object with properties for
     // the author's name, as well as the total number of words across all articles
     // written by the specified author.
@@ -80,8 +87,14 @@ Article.numWordsByAuthor = () => {
     // The first property should be pretty straightforward, but you will need to chain
     // some combination of filter, map, and reduce to get the value for the second
     // property.
-
-  })
+    return Article.allAuthors().map(function(author) {
+       return {
+         author: author,
+         words: Article.all.filter(articleObj => articleObj.author === author)
+         .map(article => article.body.split(' ').length)
+         .reduce((acc, num) => acc + num)
+     }
+   });
 };
 
 Article.truncateTable = callback => {
@@ -127,4 +140,7 @@ Article.prototype.updateRecord = function(callback) {
   })
   .then(console.log)
   .then(callback);
-};
+  }
+  module.Article = Article;
+  };
+})(app);
